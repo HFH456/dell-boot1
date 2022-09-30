@@ -19,6 +19,7 @@ Complete documentation is available at http://mytool.com`,
 
 func initAll() {
 	initRun()
+	initDown()
 }
 
 func Execute() {

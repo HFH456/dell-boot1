@@ -27,7 +27,7 @@ func RunDockerCompose() error {
 	return nil
 }
 
-func StopDockerCompose(identifier string) error {
+func DownDockerCompose(identifier string) error {
 	composeFilePaths := []string{"./docker-compose.yml"}
 
 	compose := testcontainers.NewLocalDockerCompose(composeFilePaths, identifier)
