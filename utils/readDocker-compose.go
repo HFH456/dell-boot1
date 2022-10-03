@@ -6,14 +6,8 @@ import (
 	"log"
 )
 
-type conf struct {
-	Version  string `yaml:"version"`
-	Services struct {
-	} `yaml:"services"`
-}
-
-func (c *conf) getConf() *conf {
-	yamlFile, err := ioutil.ReadFile("docker-compose.yaml")
+func (c *DockerCompose) GetConf(dir string) (*DockerCompose, error) {
+	yamlFile, err := ioutil.ReadFile(dir)
 	if err != nil {
 		log.Printf("yamlFile.Get err   #%v ", err)
 	}
@@ -22,5 +16,15 @@ func (c *conf) getConf() *conf {
 	if err != nil {
 		log.Fatalf("Unmarshal: %v", err)
 	}
-	return c
+	return c, nil
+}
+
+type DockerCompose struct {
+	Version  string                   `yaml:"version"`
+	Services map[string]ContainerItem `yaml:"services"`
+}
+type ContainerItem struct {
+	Image         string   `yaml:"image"`
+	ContainerName string   `yaml:"container_name"`
+	Ports         []string `yaml:"ports"`
 }

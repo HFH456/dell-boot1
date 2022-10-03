@@ -7,3 +7,11 @@ services:
     restart: always
     ports:
       - "8888:80"
+
+
+  nginx2:
+    image: nginx:alpine
+    container_name: nginx-service2
+    restart: always
+    ports:
+      - "8889:80"
