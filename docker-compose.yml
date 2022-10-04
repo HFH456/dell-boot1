@@ -1,12 +1,13 @@
 version: '3'
 
 services:
-  nginx:
-    image: nginx:alpine
-    container_name: nginx-service
+  init-nginx:
+    init_container: true
+    image: nginx
+    container_name: init-nginx
     restart: always
     ports:
-      - "8888:80"
+      - "80"
 
 
   nginx2:
@@ -14,4 +15,11 @@ services:
     container_name: nginx-service2
     restart: always
     ports:
-      - "8889:80"
+      - "80"
+
+  nginx3:
+    image: nginx:alpine
+    container_name: nginx-service3
+    restart: always
+    ports:
+      - "80"
