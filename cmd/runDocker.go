@@ -15,9 +15,12 @@ var runDockerCmd = &cobra.Command{
 			fmt.Println("You don't need to add any args!")
 			return
 		}
-		composeFilePaths := []string{"./docker-compose.yml"}
+		composeFilePaths := "./docker-compose.yml"
 
-		err := utils.RunDockerCompose()
+		compose := utils.DockerCompose{}
+		compose.GetConf(composeFilePaths)
+
+		err := utils.StartDockerByYml(compose)
 		if err != nil {
 			fmt.Printf("Could not run compose file: %v - %v", composeFilePaths, err)
 			return
