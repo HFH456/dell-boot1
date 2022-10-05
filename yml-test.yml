@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  init-nginx:
+    init_container: true
+    image: nginx
+    container_name: init-nginx
+    restart: always
+    ports:
+      - "80"
